@@ -1,0 +1,25 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - newfeature  # Change this to the branch you want to deploy from
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to EC2
+        env:
+          EC2_HOST: ${{ 3.255.212.191 }}
+          EC2_USER: ${{ ubuntu }}
+          EC2_SSH_KEY: ${{ b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcnNhAAAAAwEAAQAAAYEA6Q3Aomqven87dEN4o48J8+oX6nqWP9NOe5Lsz8ZhzLySlaAqXzpnT5bXri6xUJ55HgUqhQnoLiAR8nfBPQv13sOpRxTuNqK/rwOCH9LNUjuJJekA0JTlxpwqzZ/5LI20ikKzo5akFNzMCqmd+JSpKnoV7BPA/rJ95bXNzZQsWgu1xT6P4BM6Jx4NCmvn/7Hc2259tDM0u6ru4iZ/X4FCo+TjYy3Qb+yFKqm1fl+tFXqlvF74fKpJxtTv99c2WMHjvnpBwxU/wjV1X+DdpaV5LwzA5YGUAjaZ09iOkAf8KAh7ZuctD75rTbpg3tw5eepE5tZCY4wjLAWa4s4AexGCkfo+0dsQOorhfZvXtroPgKMYPRzxmX6dimsjYcacZTt1GuKe8zhos4G8nETrWrTNuvNPRIo2arrtSw4QhLXIUBeIzego0NSUGJ3FYY+nUI5J92qoGJoWn9afmNc5+U1mEngvt0kaHZAKxxRVoArmn5l5HX4xMhB9BfCwx3n8n1z5AAAFkF14t79deLe/AAAAB3NzaC1yc2EAAAGBAOkNwKJqr3p/O3RDeKOPCfPqF+p6lj/TTnuS7M/GYcy8kpWgKl86Z0+W164usVCeeR4FKoUJ6C4gEfJ3wT0L9d7DqUcU7jaiv68Dgh/SzVI7iSXpANCU5cacKs2f+SyNtIpCs6OWpBTczAqpnfiUqSp6FewTwP6yfeW1zc2ULFoLtcU+j+ATOiceDQpr5/+x3NtufbQzNLuq7uImf1+BQqPk42Mt0G/shSqptX5frRV6pbxe+HyqScbU7/fXNljB4756QcMVP8I1dV/g3aWleS8MwOWBlAI2mdPYjpAH/CgIe2bnLQ++a026YN7cOXnqRObWQmOMIywFmuLOAHsRgpH6PtHbEDqK4X2b17a6D4CjGD0c8Zl+nYprI2HGnGU7dRrinvM4aLOBvJxE61q0zbrzT0SKNmq67UsOEIS1yFAXiM3oKNDUlBidxWGPp1COSfdqqBiaFp/Wn5jXOflNZhJ4L7dJGh2QCscUVaAK5p+ZeR1+MTIQfQXwsMd5/J9c+QAAAAMBAAEAAAGBAJvQ5w9wNty2vmBwT/NCyku7IrxRs6z+sUVrqUsNfwvstDC3wjyjBrmux4scis609ZN9rrz+L67PIFC1gow3N+71cHMm6lG7JF92AAUY4s/tIDgpfbL3Kl1Mwk1yfJ0uLRwXlpV0PUX5ja4/U3AErMnKkGejmXBwlD4F/JBLVg/qLmCvAHC3SjUnIV7rYFSTbW+EgyT862/hzA+F37lR6eU8Pk9sLST3xN0OVFsmyslGlBLKiGaJUARREBPrXtme30gIJhrfNl/et1/hPHTbZA5FYHnULfWnFyChusp6+LDcSiLF8qyTnotawT6XWGKReSKUW5LN5dyePBBa3gft44PPi+0EU37RBctQkvUtg0TakMA+3v3xdJIH2d5rUW/6LsZ6DI5FwDgSvvdZIA8FsNwNxRUrzwFv2l5ANeJ73lcC/Og0s9rPQHsAdg6AClF9XTZcFtp/HRZp35kCsRL0jXwHCKi89Pk8mGDDQxmi9h6aKO88/uav2EsXxpek4jaVEQAAAMAJ77orELud6zV/wrVBv+k5i30gD/chHMutYx2W4iF3gLPr41UcgsLWVcFbW4adWF6Tv/os7swH7AHlKrKHTMALBUyT8yolRPAa6Y/G9Z2isWiUjdj2qne/A0DxVqgQyu09y3L3OqHB9TtRfU7dyIaLtgPt4NhcHun5Z2TOx2KSVoFxLr3Xi/sB9HViMNzi3SA8fFg22VnaHZ+DQHzbXaiWhFTRJK9Ql1TrMot/XumiOWY4Qx/ImFG0z13Yyg4Whk4AAADBAPyfkYKxHwzkzrzozy57ELkD/TiPQlrIJG8yU07Ybn7Tx33TTulRR07wZCVneG9nHItnb/63IsBgVJ+5x48UNzp9WCMpWaoPRwC3MO08J83hQHq9hKuMIK4aaf3IqlR6PSuP92DrvYsBZmMu1HJAK9gFHhq2Q5T+j6qQcQnI3L59PnYH7t7XHNBE7A2vAe4a6VxQo+iyPjlPTDaQfybuLnoWu9FTjZrDKJ+da/WSbEfjCiuJABJ4qZpoMAia0xFzFQAAAMEA7Cs4bw2cYaTzXkZ9ZugsHzTjZKjYW/g+OuZZqF2IXmAfxiOa1HjdomlrTxQdHPyx1hZKMufAiqgsl7IwaRhOrffLG8KZy5CXiRKVYMA7bjnSCmOu6+BZhD/IFTX7TPm1/QZGj6CvumHnMSJWuv2poRT9vPuuqFWvbUio+1m5yqEV72Ep6Rdkp8FP6aehXKIo7DwBtNz5ki8RspLbV9P8/2LtRvPTt8zMS5uypFpp9n367b1rMxRIUpdct+kZ6UtVAAAAFWFkbWluQERFU0tUT1AtR0ZPT0owRgECAwQF }}
+        run: |
+          echo "$EC2_SSH_KEY" > private_key.pem
+          chmod 600 private_key.pem
+          rsync -avz -e "ssh -i private_key.pem -o StrictHostKeyChecking=no" ./ $EC2_USER@$EC2_HOST:/path/to/deployment/directory/
+          ssh -i private_key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST 'cd /path/to/deployment/directory && ./deploy_script.sh'
